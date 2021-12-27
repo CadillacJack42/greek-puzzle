@@ -1,5 +1,5 @@
 
-import { isNotZero, addColumn } from './utils/utils.js';
+import { addColumn, isLessThan42 } from './utils/utils.js';
 import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './utils/arrays.js';
 
 let solutions = [];
@@ -11,9 +11,33 @@ let outterMost;
 
 const puzzle = () => {
     for (let i = 0; i < 12; i++) {
+        const plates = {
+            innerMost,
+            inner,
+            outter,
+            outterMost
+        };
+
         findInnerMost(i);
-        findInner(i);
-        findoutter(i);
+        
+        if (isLessThan42(innerMost)) {
+            findInner(i);
+        } else {
+            findInner(i + 1);
+        }
+        
+        if (isLessThan42(inner)) {
+            findoutter(i);
+        } else {
+            findoutter(i + 1);
+        }
+
+        if (isLessThan42(outter)) {
+            findoutterMost(i);
+        } else {
+            findoutterMost(i + 1);
+        }
+        
         findoutterMost(i);
         let column = [innerMost, inner, outter, outterMost];
         console.log(addColumn(column));
