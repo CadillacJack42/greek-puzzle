@@ -1,21 +1,6 @@
 import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate } from './arrays.js';
 import { fillall } from './fillColumns.js';
 
-export const isNotZero = (num) => {
-    if (num) {
-        return true;
-    } else {
-        return false;
-    }
-};
-
-export const isNot42 = (num) => {
-    if (num < 42 || num > 42) {
-        return true;
-    } else {
-        return false;
-    }
-};
 
 export const addColumn = (array) => {
     let result = 0;
@@ -35,9 +20,9 @@ export const rotate = (plate) => {
 };
 
 const duplicate = (arr, item) => {
-    let itemString = JSON.stringify(item);
+    const itemString = JSON.stringify(item);
 
-    let contains = arr.some(function(ele){
+    const contains = arr.some(function(ele){
         return JSON.stringify(ele) === itemString;
     });
     return contains;
@@ -48,80 +33,47 @@ let inner;
 let outter;
 let outterMost;
 
+
+
+
 export const checkAll = () => {
+    let tmPosition = 0;
+    let mPosition = 0;
+    let bmPosition = 0;
+    let bPosition = 0;
+    let solutions = [];
     let sets = [];
-    let logs = 0;
-    let set = new Set();
     for (let i = 0; i < 12; i++) {
-        [innerMost, inner, outter, outterMost] = fillall(i);
-        let column = [innerMost, inner, outter, outterMost];
-        set.add(column);
-        if (addColumn(column) === 42) {
-            console.log(true, column);
-        }
-        // console.log(set);
-        logs++;
+        const set = new Set();
+        
         
         for (let j = 0; j < 12; j++) {
             rotate(topMiddlePlate);
-            [innerMost, inner, outter, outterMost] = fillall(i);
-            let column = [innerMost, inner, outter, outterMost];
-            set.add(column);
-            if (addColumn(column) === 42) {
-                let check = duplicate(sets, column);
-                if (!check) {
-                    sets.push(column);
-                }
-                // console.log(true, column);
-            }
-            // console.log(set);
-            logs++;
-
             for (let k = 0; k < 12; k++) {
                 rotate(middlePlate);
-                [innerMost, inner, outter, outterMost] = fillall(i);
-                let column = [innerMost, inner, outter, outterMost];
-                set.add(column);
-                if (addColumn(column) === 42) {
-                    let check = duplicate(sets, column);
-                    if (!check) {
-                        sets.push(column);
-                    }
-                    // console.log(true, column);
-                }
-                // console.log(set);
-                logs++;
-
                 for (let l = 0; l < 12; l++) {
                     rotate(bottomMiddlePlate);
-                    [innerMost, inner, outter, outterMost] = fillall(i);
-                    let column = [innerMost, inner, outter, outterMost];
-                    set.add(column);
-                    if (addColumn(column) === 42) {
-                        let check = duplicate(sets, column);
-                        if (!check) {
-                            sets.push(column);
-                        }
-                        // console.log(true, column);
-                    }
-                    // console.log(set);
-                    logs++;
-
                     for (let m = 0; m < 12; m++) {
+                        
                         rotate(bottomPlate);
                         [innerMost, inner, outter, outterMost] = fillall(i);
                         let column = [innerMost, inner, outter, outterMost];
-                        set.add(column);
+                        
                         if (addColumn(column) === 42) {
+                            
                             let check = duplicate(sets, column);
+                            
                             if (!check) {
+                                const platePositions = [];
+                                tmPosition = topMiddlePlate.position % 12;
+                                mPosition = middlePlate.position % 12;
+                                bmPosition = bottomMiddlePlate.position % 12;
+                                bPosition = bottomPlate.position % 12;
+                                platePositions.push(tmPosition, mPosition, bmPosition, bPosition);
+                                solutions.push(platePositions);
                                 sets.push(column);
                             }
-                            // console.log(true, column);
-                        }
-                        // console.log(set);
-                        logs++;
-                                
+                        }                                
                     }
                     
                 }
@@ -129,10 +81,8 @@ export const checkAll = () => {
             }
             
         }
-        
-        // sets.push([...new Set(set)]);
-        console.log(sets);
     }
-    console.log(logs);
-    return sets;
+    console.log(solutions);
+    console.log(sets);
+    return [sets, solutions];
 };
