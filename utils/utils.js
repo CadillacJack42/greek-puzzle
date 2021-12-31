@@ -1,64 +1,70 @@
+import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './arrays.js';
+import { fillall } from './fillColumns.js';
 
-export const isNotZero = (num) => {
-    if (num) {
-        return true;
-    } else {
-        return false;
-    }
-};
+const solutionsEl = document.getElementById('solutions');
 
-export const isLessThan42 = (num) => {
-    if (num < 42) {
-        return true;
-    } else {
-        return false;
-    }
-};
-
-export const is42 = (num) => {
-    if (num === 42) {
-        return true;
-    } else {
-        return false;
-    }
-};
 
 export const addColumn = (array) => {
     let result = 0;
     for (const item of array) {
         result = result + item;
-        if (result > 42) {
-            console.log('RESULT: ' + result);
-            console.log('ITEM: ' + item);
-            result = 'OVER';
-            return result;
-        }
     }
     return result;
 };
 
-
-export const checkDown = (plates, i) => {
-    // This wont work. plates is an object 
-
-    return plates[i + 1];
+export const rotate = (plate) => {
+    plate.innermost.push(plate.innermost.shift());
+    plate.inner.push(plate.inner.shift());
+    plate.outter.push(plate.outter.shift());
+    plate.outtermost.push(plate.outtermost.shift());
+    plate.position++;
+    return plate;
 };
 
-export const checkAll = (value, newPlate) => {
-    //  newPlate is going to come from the above function 
-    //  (checkDown)
-    //  It is qeueing up the next plate to inspect
+let innerMost;
+let inner;
+let outter;
+let outterMost;
 
-    let newValue;
-    // newVaue will be what is checked against 42.
-    // If it breaks 42, it ends, else, it continues.
-    // On match 42, store in solutions
-
-    // poistion is each value stored in 
-    // the newPlate (should be 12 values)
-    for (const position of newPlate) {
-        newValue = value + position;
-        console.log(newValue);
+export const checkAll = () => {
+    for (let i = 0; i < 12; i++) {
+        topPlate.position = i;
+        for (let j = 0; j < 12; j++) {
+            rotate(topMiddlePlate);
+            for (let k = 0; k < 12; k++) {
+                rotate(middlePlate);
+                for (let l = 0; l < 12; l++) {
+                    rotate(bottomMiddlePlate);
+                    for (let m = 0; m < 12; m++) {
+                        
+                        rotate(bottomPlate);
+                        [innerMost, inner, outter, outterMost] = fillall(i);
+                        let column = [innerMost, inner, outter, outterMost];
+                        
+                        if (addColumn(column) === 42) {
+                            if (puzzle()) {
+                                let solutionPEl = document.createElement('p');
+                                solutionPEl.textContent = column;
+                                solutionsEl.append(solutionPEl);
+                            }
+                        }                                
+                    }
+                    
+                }
+                
+            }
+            
+        }
     }
+};
 
+const puzzle = () => {
+    for (let i = 0; i < 12; i++) {
+        let newColumn = fillall(i);
+        let checkColumn = addColumn(newColumn);
+        if (checkColumn !== 42) {
+            return false;
+        }
+    } 
+    return true;
 };
