@@ -1,7 +1,7 @@
 // IMPORT MODULES under test here:
 
 import { bottomPlate } from '../utils/arrays.js';
-import { addColumn, isNot42, isNotZero, rotate } from '../utils/utils.js';
+import { addColumn, rotate } from '../utils/utils.js';
 
 
 const test = QUnit.test;
@@ -34,27 +34,5 @@ test('Should return the sum of all values in array', (expect) => {
     expect.equal(actual, expected);
 });
 
-test('should retun true if num is NOT equal to zero', (expect) => {
-    const expected = true;
-    const actual = isNotZero(1);
-    expect.equal(actual, expected);
-});
 
-test('should retun false if num IS equal to zero', (expect) => {
-    const expected = false;
-    const actual = isNotZero(0);
-    expect.equal(actual, expected);
-});
-
-test('should retun false if num IS equal to 42', (expect) => {
-    const expected = false;
-    const actual = isNot42(42);
-    expect.equal(actual, expected);
-});
-
-test('should retun true if num is Not equal to 42', (expect) => {
-    const expected = true;
-    const actual = isNot42(5);
-    expect.equal(actual, expected);
-});
 
