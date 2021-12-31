@@ -1,5 +1,7 @@
-import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate } from './arrays.js';
+import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './arrays.js';
 import { fillall } from './fillColumns.js';
+
+const solutionsEl = document.getElementById('solutions');
 
 
 export const addColumn = (array) => {
@@ -19,34 +21,14 @@ export const rotate = (plate) => {
     return plate;
 };
 
-const duplicate = (arr, item) => {
-    const itemString = JSON.stringify(item);
-
-    const contains = arr.some(function(ele){
-        return JSON.stringify(ele) === itemString;
-    });
-    return contains;
-};
-
 let innerMost;
 let inner;
 let outter;
 let outterMost;
 
-
-
-
 export const checkAll = () => {
-    let tmPosition = 0;
-    let mPosition = 0;
-    let bmPosition = 0;
-    let bPosition = 0;
-    let solutions = [];
-    let sets = [];
     for (let i = 0; i < 12; i++) {
-        const set = new Set();
-        
-        
+        topPlate.position = i;
         for (let j = 0; j < 12; j++) {
             rotate(topMiddlePlate);
             for (let k = 0; k < 12; k++) {
@@ -60,18 +42,10 @@ export const checkAll = () => {
                         let column = [innerMost, inner, outter, outterMost];
                         
                         if (addColumn(column) === 42) {
-                            
-                            let check = duplicate(sets, column);
-                            
-                            if (!check) {
-                                const platePositions = [];
-                                tmPosition = topMiddlePlate.position % 12;
-                                mPosition = middlePlate.position % 12;
-                                bmPosition = bottomMiddlePlate.position % 12;
-                                bPosition = bottomPlate.position % 12;
-                                platePositions.push(tmPosition, mPosition, bmPosition, bPosition);
-                                solutions.push(platePositions);
-                                sets.push(column);
+                            if (puzzle()) {
+                                let solutionPEl = document.createElement('p');
+                                solutionPEl.textContent = column;
+                                solutionsEl.append(solutionPEl);
                             }
                         }                                
                     }
@@ -82,7 +56,15 @@ export const checkAll = () => {
             
         }
     }
-    console.log(solutions);
-    console.log(sets);
-    return [sets, solutions];
+};
+
+const puzzle = () => {
+    for (let i = 0; i < 12; i++) {
+        let newColumn = fillall(i);
+        let checkColumn = addColumn(newColumn);
+        if (checkColumn !== 42) {
+            return false;
+        }
+    } 
+    return true;
 };

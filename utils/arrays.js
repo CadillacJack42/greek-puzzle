@@ -38,24 +38,3 @@ export const topPlate = {
     outtermost: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     position: 0
 };
-
-
-//  Base all the columns on the topPlate values. Think of them as constant
-let longComment = `
-
-Base all the columns on the topPlate values. Think of them as constants.
-
-Work out ( down ) from each position. If the combo ever checks over 42, don't continue.
-    - When it returns 42, Store as a possible solution
-        - - Solutions need to be compared to ensure they are the same "version".
-        - - - All columns must line up at once.
-
-Zeros should fall to the next plate. 
-
-ALL CODE in app.js is currently rendundant. You realistically have
-like 5 or 6 function calls with a function or two each. They do the same 
-thing but, they do it to different variables. Figure out a generic way to write it.
-
-`;
-
-console.log(longComment);
