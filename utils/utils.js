@@ -36,7 +36,6 @@ export const checkAll = () => {
                     for (let m = 0; m < 12; m++) {
                         
                         rotate(bottomPlate);
-
                         
                         [innerMost, inner, outter, outterMost] = fillall(i);
                         let column = [innerMost, inner, outter, outterMost];
