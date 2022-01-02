@@ -1,10 +1,8 @@
+import { reDraw } from '../circle/circle.js';
 import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './arrays.js';
 import { fillall } from './fillColumns.js';
 
-const solutionsEl = document.getElementById('solutions');
-
-
-export const addColumn = (array) => {
+const addColumn = (array) => {
     let result = 0;
     for (const item of array) {
         result = result + item;
@@ -12,7 +10,7 @@ export const addColumn = (array) => {
     return result;
 };
 
-export const rotate = (plate) => {
+const rotate = (plate) => {
     plate.innermost.push(plate.innermost.shift());
     plate.inner.push(plate.inner.shift());
     plate.outter.push(plate.outter.shift());
@@ -38,14 +36,14 @@ export const checkAll = () => {
                     for (let m = 0; m < 12; m++) {
                         
                         rotate(bottomPlate);
+
+                        
                         [innerMost, inner, outter, outterMost] = fillall(i);
                         let column = [innerMost, inner, outter, outterMost];
                         
                         if (addColumn(column) === 42) {
                             if (puzzle()) {
-                                let solutionPEl = document.createElement('p');
-                                solutionPEl.textContent = column;
-                                solutionsEl.append(solutionPEl);
+                                reDraw();
                             }
                         }                                
                     }

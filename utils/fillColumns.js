@@ -90,10 +90,34 @@ export const findoutterMost = (i) => {
 };
 
 export const fillall = (i) => {
-    let innerMost = findInnerMost(i);
-    let inner = findInner(i);
-    let outter = findoutter(i);
-    let outterMost = findoutterMost(i);
+    const innerMost = findInnerMost(i);
+    const inner = findInner(i);
+    const outter = findoutter(i);
+    const outterMost = findoutterMost(i);
 
     return [innerMost, inner, outter, outterMost];
+};
+
+export const fillRings = () => {
+    let fourthRing = [];
+    let thirdRing = [];
+    let secondRing = [];
+    let firstRing = [];
+
+    let innerMost;
+    let inner;
+    let outter;
+    let outterMost;
+
+    for (let i = 0; i < 12; i++) {
+        [innerMost, inner, outter, outterMost] = fillall(i);
+        fourthRing.push(outterMost);
+        thirdRing.push(outter);
+        secondRing.push(inner);
+        firstRing.push(innerMost);
+        
+    }
+
+    return [fourthRing, thirdRing, secondRing, firstRing];
+
 };
