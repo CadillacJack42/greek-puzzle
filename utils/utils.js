@@ -2,7 +2,7 @@ import { reDraw } from '../circle/circle.js';
 import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './arrays.js';
 import { fillall } from './fillColumns.js';
 
-const addColumn = (array) => {
+export const addColumn = (array) => {
     let result = 0;
     for (const item of array) {
         result = result + item;
