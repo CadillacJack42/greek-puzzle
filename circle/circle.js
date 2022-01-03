@@ -27,6 +27,7 @@ export const numbers = (radius, array) => {
 };
 
 export const reDraw = () => {
+    console.log("I'M HERE");
     const rings = fillRings();
     numbers(125, rings[3]);
     numbers(200, rings[2]);
