@@ -10,12 +10,11 @@ const addColumn = (array) => {
     return result;
 };
 
-const rotate = (plate) => {
+export const rotate = (plate) => {
     plate.innermost.push(plate.innermost.shift());
     plate.inner.push(plate.inner.shift());
     plate.outter.push(plate.outter.shift());
     plate.outtermost.push(plate.outtermost.shift());
-    plate.position++;
     return plate;
 };
 
@@ -36,7 +35,6 @@ export const checkAll = () => {
                     for (let m = 0; m < 12; m++) {
                         
                         rotate(bottomPlate);
-
                         
                         [innerMost, inner, outter, outterMost] = fillall(i);
                         let column = [innerMost, inner, outter, outterMost];

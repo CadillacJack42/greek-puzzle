@@ -3,12 +3,11 @@ import { fillRings } from '../utils/fillColumns.js';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-
 let radius = canvas.height / 2;
 ctx.translate(radius, radius);
 radius = radius * 0.90;
 
-const numbers = (radius, array) => {
+export const numbers = (radius, array) => {
     let ang;
     ctx.font = '30px arial';
     ctx.textBaseline = 'middle';
@@ -30,7 +29,7 @@ const numbers = (radius, array) => {
 export const reDraw = () => {
     const rings = fillRings();
     numbers(125, rings[3]);
-    numbers(175, rings[2]);
-    numbers(250, rings[1]);
-    numbers(300, rings[0]);
+    numbers(200, rings[2]);
+    numbers(275, rings[1]);
+    numbers(350, rings[0]);
 };

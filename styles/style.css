@@ -78,7 +78,7 @@ header img {
 p {
     margin: var(--gutter);
 }
-  
+
 footer {
     position: fixed;
     width: 100%;
@@ -88,6 +88,14 @@ footer {
     justify-content: flex-end;
     background-color: var(--color3);
     box-shadow: var(--shadow);
+}
+
+#canvas {
+    margin: 5px 0 20px 0;
+}
+
+#buttonDiv {
+    margin: 25px auto;
 }
 
 
