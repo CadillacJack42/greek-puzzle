@@ -91,11 +91,15 @@ footer {
 }
 
 #canvas {
-    margin: 5px 0 20px 0;
+    margin: 15px 0 20px 0;
 }
 
 #buttonDiv {
     margin: 25px auto;
+}
+
+.texts {
+    margin: 0 auto;
 }
 
 
