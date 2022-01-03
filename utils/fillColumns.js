@@ -1,6 +1,5 @@
 import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './arrays.js';
 
-
 export const findInnerMost = (i) => {
     let innerMost;
     if (topPlate.innermost[i] === 0) {
@@ -117,7 +116,5 @@ export const fillRings = () => {
         firstRing.push(innerMost);
         
     }
-
     return [fourthRing, thirdRing, secondRing, firstRing];
-
 };

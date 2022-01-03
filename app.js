@@ -1,4 +1,3 @@
-// import { numbers } from './circle/circle.js';
 import { reDraw } from './circle/circle.js';
 import { rotate } from './utils/utils.js';
 import { bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './utils/arrays.js';
@@ -19,7 +18,6 @@ solveBtn.addEventListener('click', () => {
     ringMaker();
     checkAll();
 });
-
 
 innerMostRing.addEventListener('click', () => {
     rotate(topPlate);
@@ -49,9 +47,6 @@ outterMostRing.addEventListener('click', () => {
     reDraw();
 });
 
-
-
-
 const rings = (r) => {
     const canvas = document.getElementById('canvas');
     if (canvas.getContext) {
@@ -71,7 +66,6 @@ const ringMaker = () => {
     rings(265);
     rings(325);
 };
-
 
 ringMaker();
 reDraw();

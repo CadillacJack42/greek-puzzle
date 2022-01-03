@@ -1,6 +1,7 @@
 import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './arrays.js';
-import { rotate, puzzle, addColumn, fillall } from './utils.js';
+import { rotate, puzzle, addColumn } from './utils.js';
 import { reDraw } from '../circle/circle.js';
+import { fillall } from './fillColumns.js';
 
 let innerMost;
 let inner;
