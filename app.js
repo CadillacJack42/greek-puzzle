@@ -1,7 +1,8 @@
 // import { numbers } from './circle/circle.js';
 import { reDraw } from './circle/circle.js';
-import { checkAll, rotate } from './utils/utils.js';
+import { rotate } from './utils/utils.js';
 import { bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './utils/arrays.js';
+import { checkAll } from './utils/solve.js';
 
 
 const solveBtn = document.getElementById('solve');
