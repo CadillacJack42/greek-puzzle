@@ -1,5 +1,5 @@
-import { reDraw } from '../circle/circle.js';
-import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './arrays.js';
+// import { reDraw } from '../circle/circle.js';
+// import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './arrays.js';
 import { fillall } from './fillColumns.js';
 
 export const addColumn = (array) => {
@@ -18,43 +18,43 @@ export const rotate = (plate) => {
     return plate;
 };
 
-let innerMost;
-let inner;
-let outter;
-let outterMost;
+// let innerMost;
+// let inner;
+// let outter;
+// let outterMost;
 
-export const checkAll = () => {
-    for (let i = 0; i < 12; i++) {
-        topPlate.position = i;
-        for (let j = 0; j < 12; j++) {
-            rotate(topMiddlePlate);
-            for (let k = 0; k < 12; k++) {
-                rotate(middlePlate);
-                for (let l = 0; l < 12; l++) {
-                    rotate(bottomMiddlePlate);
-                    for (let m = 0; m < 12; m++) {
+// export const checkAll = () => {
+//     for (let i = 0; i < 12; i++) {
+//         topPlate.position = i;
+//         for (let j = 0; j < 12; j++) {
+//             rotate(topMiddlePlate);
+//             for (let k = 0; k < 12; k++) {
+//                 rotate(middlePlate);
+//                 for (let l = 0; l < 12; l++) {
+//                     rotate(bottomMiddlePlate);
+//                     for (let m = 0; m < 12; m++) {
                         
-                        rotate(bottomPlate);
+//                         rotate(bottomPlate);
                         
-                        [innerMost, inner, outter, outterMost] = fillall(i);
-                        let column = [innerMost, inner, outter, outterMost];
+//                         [innerMost, inner, outter, outterMost] = fillall(i);
+//                         let column = [innerMost, inner, outter, outterMost];
                         
-                        if (addColumn(column) === 42) {
-                            if (puzzle()) {
-                                reDraw();
-                            }
-                        }                                
-                    }
+//                         if (addColumn(column) === 42) {
+//                             if (puzzle()) {
+//                                 reDraw();
+//                             }
+//                         }                                
+//                     }
                     
-                }
+//                 }
                 
-            }
+//             }
             
-        }
-    }
-};
+//         }
+//     }
+// };
 
-const puzzle = () => {
+export const puzzle = () => {
     for (let i = 0; i < 12; i++) {
         let newColumn = fillall(i);
         let checkColumn = addColumn(newColumn);
