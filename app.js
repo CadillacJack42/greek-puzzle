@@ -1,7 +1,7 @@
 // import { numbers } from './circle/circle.js';
 import { reDraw } from './circle/circle.js';
 import { checkAll, rotate } from './utils/utils.js';
-import { bottomPlate, bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './utils/arrays.js';
+import { bottomMiddlePlate, middlePlate, topMiddlePlate, topPlate } from './utils/arrays.js';
 
 
 const solveBtn = document.getElementById('solve');
@@ -68,6 +68,7 @@ const ringMaker = () => {
     rings(140);
     rings(205);
     rings(265);
+    rings(325);
 };
 
 
